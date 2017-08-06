@@ -18,19 +18,19 @@ def get_london_icscodes():
 
 def get_cycle_info(icscode, tfl_dest):
     sql = """
-    select * from cycle_times_in_london 
-    where icscode = {} and tfl_dest = {}
+    select * from tt_h.cycle_times_in_london 
+    where icscode = '{}' and destination = '{}'
     """.format(icscode, tfl_dest)
     
     df = pd.read_sql(sql, conn)
     
-    minutes = df.loc[0, "cycle_minutes"]
-    miles = df.loc[0, "cycle_miles"]
+    minutes = df.loc[df.index[0], "cycle_minutes"]
+    miles = df.loc[df.index[0], "cycle_miles"]
     
     return {"minutes": minutes, "miles":miles}
     
 
-def remove_nonlondon_journeys(journeys):
+def remove_journeys_not_arriving_clondon(journeys):
     new_journeys = []
     london_ics = get_london_icscodes()
     for journey in journeys:
@@ -38,14 +38,14 @@ def remove_nonlondon_journeys(journeys):
         ics = lastleg["arrivalPoint"]["icsCode"]
         if (ics in london_ics): 
             new_journeys.append(journey)
-    return journeys
+    return new_journeys
 
 def add_cycle_and_total_time(journeys, tfl_dest):
     for journey in journeys:
         legs = journey["legs"]
         icscode = journey["legs"][-1]["arrivalPoint"]["icsCode"]
         
-        times = get_cycle_time_mem(icscode, tfl_dest)
+        times = get_cycle_info(icscode, tfl_dest)
         journey["cycle_minutes"] = times["minutes"]
         journey["cycle_miles"] = times["miles"]
         natrail_journey_minutes = parse_tfl_json.get_total_travel_time(legs) 

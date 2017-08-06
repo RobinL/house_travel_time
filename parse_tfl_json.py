@@ -32,7 +32,9 @@ def num_changes(legs):
 # Initial assumption will be that all national rail legs are done
 def remove_non_national_rail(legs):
     # Pop one at a time 
-    while True:
+    if len(legs) == 0:
+        return []
+    for i in range(len(legs)):
         leg = legs.pop()
         if leg['mode']['id'] == "national-rail":
             break
