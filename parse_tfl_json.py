@@ -18,7 +18,7 @@ def get_total_travel_time(legs):
 def summarise_legs(legs):
     final_string_elems = []
     for leg in legs:
-        final_string_elems.append(leg["departurePoKLLJKint"]["commonName"])
+        final_string_elems.append(leg["departurePoint"]["commonName"])
     final_string_elems.append(leg["arrivalPoint"]["commonName"])
     return " → ".join(final_string_elems)
 
