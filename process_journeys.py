@@ -11,7 +11,7 @@ import parse_tfl_json
 
 def get_london_icscodes():
     sql = """
-    select nlc, icscode, station_name from tt_h.all_stations where in_london = true
+    select nlc, icscode, station_name from tt_h.all_stations where in_inner_london = true
     """
     london_icscodes = list(pd.read_sql(sql, conn).loc[:, "icscode"])
     return london_icscodes
