@@ -52,3 +52,13 @@ def add_cycle_and_total_time(journeys, tfl_dest):
         journey["total_time"] = journey["cycle_minutes"] + natrail_journey_minutes
     return journeys
 
+def get_station_lat_lng_from_icscode(icscode):
+    sql = """
+    select lat, lng from tt_h.all_stations where icscode = '{}'
+    """.format(icscode)
+    df = pd.read_sql(sql, conn)
+    lat = df.iloc[0,0]
+    lng = df.iloc[0,1]
+    return (lat, lng)
+    
+
