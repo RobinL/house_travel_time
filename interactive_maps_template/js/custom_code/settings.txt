@@ -1,0 +1,98 @@
+var VMT = {} //VoronoiMapTemplate
+
+VMT.filter_field = ""
+
+VMT.shapefile_path = "topojson/uk_boundaries.json"
+VMT.csv_path = "data/stations_maps_data.csv"
+
+//Colour options for shading
+VMT.colour_options = {
+    "Red (high) to green (low)": ["#6AE817","#FFA200", "#B30409"],
+    "Blues": ["#B5EED9", "#37BAE5",  "#132978", "#0D162C"],
+    "Condensed" : ["#6ae817","#c3dd24","#f0ab26","#c22d10","#a10408","#6b0205","#360103","#1b0101","#0d0001","#000000"],
+    "Journeytime" :["#10FF04", "#FFB400", "#FF0800", "#5C0200", "#000000"]
+};
+
+VMT.categorical_colours = ["#777",
+                             "#dc3912",
+                             "#ff9900",
+                             "#0E8917",
+                             "#990099",
+                             "#0099c6",
+                             "#dd4477",
+                             "#A6FF3C",
+                             "#FF3F42",
+                             "#1C3C5D",
+                             "#D860DA"];
+
+//Manual overrides on the description of the columns in the csv file.
+VMT.column_descriptions_data = {
+    "total_journeytime_pf": {
+        "long_name": "Total journeytime to 102PF",
+        "format": d3.format(",.1"),
+        "domain": [20,40,60,90,120],
+        "colour_option": "Journeytime"
+    },
+    "total_journeytime_cw": {
+        "long_name": "Total journeytime to CW",
+        "format": d3.format(",.1"),
+        "domain": [20,40,60,90,120],
+        "colour_option": "Journeytime"
+    },
+    "final_arrival_pf" : {},
+    "final_arrival_cw" : {},
+    'drive_miles_cb113qy' :{},
+    'drive_miles_ox145fp' :{},
+    'drive_minutes_cb113qy' :{
+     "long_name": "Drivetime Newport",
+        "format": d3.format(",.1"),
+        "domain": [0,45,90,120,240],
+        "colour_option": "Journeytime"
+    },
+    'drive_minutes_ox145fp' :{
+    "long_name": "Drivetime Abingdon",
+        "format": d3.format(",.1"),
+        "domain": [0,45,90,120,240],
+        "colour_option": "Journeytime"
+    },
+    'parents_drivetime_diff' : {
+        "long_name": "Difference in drivetime for parents",
+        "format": d3.format(",.1"),
+        "domain": [0,10,20,60,120],
+        "colour_option": "Journeytime"
+    },
+    'parents_drivetime_total' : {
+        "long_name": "Total drivetime parents",
+        "format": d3.format(",.1"),
+        "domain": [100,140,180, 250,1000],
+        "colour_option": "Journeytime"
+    },
+    'parents_drivetime_score' : {
+    "long_name": "Parents drivetime score",
+        "format": d3.format(",.1"),
+        "domain": [100,180,220, 400,1000],
+        "colour_option": "Journeytime"
+
+    }
+
+
+
+};
+
+
+VMT.filter_options = [{
+    "column": "none",
+    "text": "No filter"
+},
+{
+    "column": "metric_4",
+    "text": "Metric 4"
+},
+{
+    "column": "metric 5",
+    "text": "Metric 5"
+}]
+
+VMT.transitionDuration = 500
+//Do we update the key depending on the filtered data or all the data?
+VMT.global_key_scale = false

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+        <link href="css/leaflet.css" rel="stylesheet"/>
+
+    <link href="css/style.css" rel="stylesheet"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+
+    <div id='map'>
+    </div>
+
+    <div class="padded_options">
+     
+      <div class=flex_parent>
+        
+        <div class="flex_item">
+          <div id='metric' class='selections2'>
+            <label for="shadingOptions">Metric for area shading:
+            </label>
+            <select name="shadingOptions" id="shadingOptions">
+              </select>
+          </div>
+        </div>
+        
+        <div class="flex_item">
+          <div id='metric' class='selections2'>
+            <label for="pointShadingOptions">Metric for point shading
+            </label>
+              
+              <select name="pointShadingOptions" id="pointShadingOptions">
+              </select>
+          </div>
+        </div>
+
+        <div class="flex_item">
+          <div id='metric' class='selections2'>
+            <label for="pointSizeOptions">Metric for point size
+            </label>
+              
+              <select name="pointSizeOptions" id="pointSizeOptions">
+              </select>
+          </div>
+        </div>
+
+         <div class="flex_item">
+          <div id='metric' class='selections2'>
+            <label for="pointSizeOptions">Metric for key
+              
+            </label>
+              <select name="keyOptions" id="keyOptions">
+              </select>
+          </div>
+        </div>
+
+        <div class="flex_item">
+          <div id='colour' class='selections2'>
+            <label for="colourOptions">Select colour scheme:
+              
+            </label>
+              <select name="colourOptions" id="colourOptions">
+              </select>
+          </div>
+        </div>
+      
+        <div class="flex_item">
+          <div id='filter_records' class='selections2'>
+            <label for="filter_records" id="fieldsetholder">Filter the record based on categories
+            <button id="new_fieldset_button">+</button>
+            </label>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+   
+   <div id='hover_panel'>
+      <h3>Hover over areas to display statistics</h3>
+    
+    </div>
+
+
+    
+    <script src="js/third_party/leaflet.txt"></script>
+    <script src="js/third_party/d3.txt"></script>
+    <script src="js/third_party/topojson.v1.min.txt"></script>
+    <script src="js/third_party/underscore.txt"></script>
+    <script src="js/third_party/jquery.txt"></script>
+    <script src="js/third_party/handlebars-v4.0.5.txt"></script>
+
+    <!-- <script src="data/csv_data.txt"></script> -->
+    <!-- <script src="topojson/uk_boundaries.txt"></script> -->
+    <script src="js/custom_code/utils.txt"></script>
+    <script src="js/custom_code/settings.txt"></script>
+    <script src="js/custom_code/voronoi_map.txt"></script>
+    <script src="js/custom_code/map_keys.txt"></script>
+    <script src="js/custom_code/dataholder.txt"></script>
+    <script src="js/custom_code/main.txt"></script>
+    
+    <script id="hp_info" type="text/x-handlebars-template">
+      <div class="entry">
+        <div>
+          <h2>{{station_name}}</h2>
+          <h4>Total journeytime to 102PF = {{total_journeytime_pf}}</h4>
+          <h4>Natrail journeytime 102PF = {{natrail_journey_minutes_pf}}</h4>
+          <h4>Journey summary 102PF = {{natrail_journey_summary_pf}}</h4>
+
+          <h4>Total journeytime to CW = {{total_journeytime_cw}}</h4>
+          <h4>Natrail journeytime CW = {{natrail_journey_minutes_cw}}</h4>
+          <h4>Natrail journeytime CW = {{natrail_journey_summary_cw}}</h4>
+
+          <h4>Drivetime Newport = {{drive_minutes_cb113qy}}</h4>
+          <h4>Drivetime Abingdon = {{drive_minutes_ox145fp}}</h4>
+          <h4>Abs diff = {{parents_drivetime_diff}}</h4>
+
+      
+
+        </div>
+      </div>
+    </script>
+
+
+  </body>
+</html>
